@@ -1,0 +1,17 @@
+{
+  "name": "@stefanprobst/xdm-cli",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "xdm": "cli.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "dependencies": {
+    "remark": "^13.0.0",
+    "unified-args": "^8.0.0",
+    "xdm": "^1.11.1"
+  }
+}
