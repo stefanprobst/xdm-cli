@@ -13,6 +13,15 @@ const cli = require("./package.json");
 const processor = remark().use(remarkMdx).use(remarkMarkAndUnravel);
 const extensions = ["mdx"];
 
+let name = proc.name;
+process.argv = process.argv.filter((arg) => {
+  if (arg === "--remark") {
+    name = "remark";
+    return false;
+  }
+  return true;
+});
+
 start({
   processor: processor,
   name: proc.name,
@@ -21,10 +30,10 @@ start({
     proc.name + ": " + proc.version,
     cli.name + ": " + cli.version,
   ].join(", "),
-  pluginPrefix: proc.name,
-  presetPrefix: proc.name + "-preset",
-  packageField: proc.name + "Config",
-  rcName: "." + proc.name + "rc",
-  ignoreName: "." + proc.name + "ignore",
+  pluginPrefix: name,
+  presetPrefix: name + "-preset",
+  packageField: name + "Config",
+  rcName: "." + name + "rc",
+  ignoreName: "." + name + "ignore",
   extensions: extensions,
 });
