@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { createRequire } from "module";
-import start from "unified-args";
-import remark from "remark";
+import { args } from "unified-args";
+import { remark } from "remark";
 import { remarkMarkAndUnravel } from "xdm/lib/plugin/remark-mark-and-unravel.js";
 import { remarkMdx } from "xdm/lib/plugin/remark-mdx.js";
 
@@ -13,7 +13,7 @@ const cli = require("./package.json");
 const processor = remark().use(remarkMdx).use(remarkMarkAndUnravel);
 const extensions = ["mdx"];
 
-start({
+args({
   processor: processor,
   name: proc.name,
   description: cli.description,
@@ -22,9 +22,8 @@ start({
     cli.name + ": " + cli.version,
   ].join(", "),
   pluginPrefix: proc.name,
-  presetPrefix: proc.name + "-preset",
   packageField: proc.name + "Config",
   rcName: "." + proc.name + "rc",
   ignoreName: "." + proc.name + "ignore",
-  extensions: extensions,
+  extensions,
 });
